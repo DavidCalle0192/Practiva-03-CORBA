@@ -14,7 +14,9 @@ public class ClienteDeObjetos {
     static GestionAsintomaticos ref;
     static float temp = 0;
     static boolean estable = true;
+    static boolean registro = false;
     static int id;
+    static int cont = 0;//controla la cantida de pacientes
 
     public static void main(String args[]) {
         try {
@@ -34,14 +36,14 @@ public class ClienteDeObjetos {
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 
             // *** Resuelve la referencia del objeto en el N_S ***
-            String name = "objAnteproyecto";
+            String name = "objAsintomatico";
             ref = GestionAsintomaticosHelper.narrow(ncRef.resolve_str(name));
 
             System.out.println("Obtenido el manejador sobre el servidor de objetos: " + ref);
             String nombre;
             String apellido;
             String tipo_id;
-            
+
             String direccion;
 
             int rta = 0;
@@ -51,42 +53,54 @@ public class ClienteDeObjetos {
                 switch (rta) {
                     case 1:
 
-                        System.out.println(" Digite el nombre del paciente: ");
-                        nombre = UtilidadesConsola.leerCadena();
+                        if (cont < 5) {
 
-                        System.out.println(" Digite el apellido del paciente: ");
-                        apellido = UtilidadesConsola.leerCadena();
+                            System.out.println(" Digite el nombre del paciente: ");
+                            nombre = UtilidadesConsola.leerCadena();
 
-                        System.out.println(" Digite el tipo de identificación del paciente: ");
-                        tipo_id = UtilidadesConsola.leerCadena();
+                            System.out.println(" Digite el apellido del paciente: ");
+                            apellido = UtilidadesConsola.leerCadena();
 
-                        System.out.println(" Digite el id : ");
-                        id = UtilidadesConsola.leerEntero();
+                            System.out.println(" Digite el tipo de identificación del paciente: ");
+                            tipo_id = UtilidadesConsola.leerCadena();
 
-                        System.out.println(" Digite la dirección de paciente: ");
-                        direccion = UtilidadesConsola.leerCadena();
+                            System.out.println(" Digite el id : ");
+                            id = UtilidadesConsola.leerEntero();
 
-                        asintomaticoDTO paciente = new asintomaticoDTO(nombre, apellido, tipo_id, id, direccion);
-                        BooleanHolder res = new BooleanHolder();
-                        ref.registrarAsintomatico(paciente, res);
+                            System.out.println(" Digite la dirección de paciente: ");
+                            direccion = UtilidadesConsola.leerCadena();
 
-                        if (res.value) {
-                            System.out.println("Paciente registrado con éxito");
+                            asintomaticoDTO paciente = new asintomaticoDTO(nombre, apellido, tipo_id, id, direccion);
+                            BooleanHolder res = new BooleanHolder();
+                            ref.registrarAsintomatico(paciente, res);
+
+                            if (res.value) {
+                                System.out.println("============Notificación=============");
+                                System.out.println("Se registro el paciente con id: " + id);
+                                System.out.println("=====================================");
+                                registro = true;
+                                cont++;
+                            } else {
+                                System.out.println("================Notificación================");
+                                System.out.println("Fallo el registro del paciente con id: " + id);
+                                System.out.println("============================================");
+
+                            }
                         } else {
                             System.out.println("No ha sido posible registrar el paciente. Ya hay 5 pacientes");
                         }
+
                         break;
 
                     case 2:
                         opcion2();
-                        
-                         asintomaticoDTO objAsintomatico = new asintomaticoDTO();
-                         asintomaticoDTOHolder asin_bus = new asintomaticoDTOHolder();
-                         asin_bus.value=objAsintomatico;
-                    
-                         boolean pacienteObtenido = ref.enviarIndicador(id, temp);
-                       
-                         
+
+                        asintomaticoDTO objAsintomatico = new asintomaticoDTO();
+                        asintomaticoDTOHolder asin_bus = new asintomaticoDTOHolder();
+                        asin_bus.value = objAsintomatico;
+
+                        boolean pacienteObtenido = ref.enviarIndicador(id, temp);
+
                         break;
                 }
 
