@@ -1,0 +1,13 @@
+module servidorNotificaciones{
+    module sop_corba{
+        interface GestionNotificaciones{
+            struct ClsMensajeNotificacionDTO{
+                string tipo_id;
+                long id;
+                float ToC;
+            };
+
+            void notificarMensaje(in ClsMensajeNotificacionDTO objNotificacion);
+        };
+    };
+};

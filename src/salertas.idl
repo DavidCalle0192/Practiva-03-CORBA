@@ -1,0 +1,15 @@
+module servidorAlertas{
+module sop_corba{
+    interface GestionAsintomaticos{
+        struct asintomaticoDTO{
+            string nombres;
+            string apellidos;
+            string tipo_id;
+            long id;
+            string direccion;
+        };
+        void registrarAsintomatico(in asintomaticoDTO objDTO,out boolean resultado);
+        boolean enviarIndicador(in long id,in float ToC);
+        };
+    };
+};
