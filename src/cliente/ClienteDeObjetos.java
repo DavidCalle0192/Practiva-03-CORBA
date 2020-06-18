@@ -17,6 +17,7 @@ public class ClienteDeObjetos {
     static boolean registro = false;
     static int id;
     static int cont = 0;//controla la cantida de pacientes
+    static int aux = 0;//controla la existencia de pacientes
 
     public static void main(String args[]) {
         try {
@@ -52,7 +53,7 @@ public class ClienteDeObjetos {
 
                 switch (rta) {
                     case 1:
-
+                        aux = 1;
                         if (cont < 5) {
 
                             System.out.println(" Digite el nombre del paciente: ");
@@ -93,13 +94,19 @@ public class ClienteDeObjetos {
                         break;
 
                     case 2:
-                        opcion2();
+                        if (aux == 0) {
+                            System.out.println("No existen pacientes registrados.");
+                        } else {
+                            opcion2();
 
-                        asintomaticoDTO objAsintomatico = new asintomaticoDTO();
-                        asintomaticoDTOHolder asin_bus = new asintomaticoDTOHolder();
-                        asin_bus.value = objAsintomatico;
+                            asintomaticoDTO objAsintomatico = new asintomaticoDTO();
+                            asintomaticoDTOHolder asin_bus = new asintomaticoDTOHolder();
+                            asin_bus.value = objAsintomatico;
 
-                        boolean pacienteObtenido = ref.enviarIndicador(id, temp);
+                            boolean pacienteObtenido = ref.enviarIndicador(id, temp);
+                            System.out.println("Enviando indicadores...");
+
+                        }
 
                         break;
                 }
@@ -115,7 +122,7 @@ public class ClienteDeObjetos {
     public static boolean opcion2() {
 
         System.out.println(" Digite la temperatura del paciente: ");
-        temp = UtilidadesConsola.leerEntero();
+        temp = UtilidadesConsola.leerFlotante();
         if (temp < 36.2 || temp > 38.2) {
             estable = false;
         }
