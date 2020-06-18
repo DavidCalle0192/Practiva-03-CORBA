@@ -1,5 +1,6 @@
 package servidorAlertas;
 
+import cliente.utilidades.UtilidadesConsola;
 import org.omg.CORBA.*;
 import org.omg.CosNaming.*;
 import org.omg.PortableServer.*;
@@ -12,12 +13,13 @@ public class ServidorDeObjetos {
 
   public static void main(String args[]) {
     try{
-        
-                String[] vec = new String[4];
-        vec[0] = "-ORBInitialHost";
-        vec[1] = "localhost";
+        String[] vec = new String[4];
+        vec[0] = "-ORBInitialPort";
+        System.out.println("Ingrese la dirección IP donde escucha el n_s");
+        vec[1] = UtilidadesConsola.leerCadena();
         vec[2] = "-ORBInitialPort";
-        vec[3] = "2020";
+        System.out.println("Ingrese el puerto donde escucha el n_s");
+        vec[3] = UtilidadesConsola.leerCadena();
         
         System.out.println("1. Crea e inicia el orb");
         ORB orb = ORB.init(vec, null);

@@ -1,5 +1,6 @@
 package cliente;
 
+import cliente.utilidades.UtilidadesConsola;
 import org.omg.CosNaming.*;
 import org.omg.CosNaming.NamingContextPackage.*;
 import org.omg.CORBA.*;
@@ -73,6 +74,7 @@ public class ClienteDeObjetos {
 
                             asintomaticoDTO paciente = new asintomaticoDTO(nombre, apellido, tipo_id, id, direccion);
                             BooleanHolder res = new BooleanHolder();
+                            res.value = false;
                             ref.registrarAsintomatico(paciente, res);
 
                             if (res.value) {
