@@ -12,8 +12,13 @@ public class ServidorDeObjetos {
 
   public static void main(String args[]) {
     try{
+        String[] vec = new String[4];
+        vec[0] = "-ORBInitialHost";
+        vec[1] = "localhost";
+        vec[2] = "-ORBInitialPort";
+        vec[3] = "2020";
         System.out.println("1. Crea e inicia el orb");
-        ORB orb = ORB.init(args, null);
+        ORB orb = ORB.init(vec, null);
 
         System.out.println("2. Obtiene la referencia al poa raiz, por medio del orb ");
         org.omg.CORBA.Object objPOA = null;
