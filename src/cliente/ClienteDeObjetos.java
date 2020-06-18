@@ -36,7 +36,7 @@ public class ClienteDeObjetos {
             NamingContextExt ncRef = NamingContextExtHelper.narrow(objRef);
 
             // *** Resuelve la referencia del objeto en el N_S ***
-            String name = "objAnteproyecto";
+            String name = "objAsintomatico";
             ref = GestionAsintomaticosHelper.narrow(ncRef.resolve_str(name));
 
             System.out.println("Obtenido el manejador sobre el servidor de objetos: " + ref);
@@ -75,15 +75,15 @@ public class ClienteDeObjetos {
                             ref.registrarAsintomatico(paciente, res);
 
                             if (res.value) {
-                                System.out.println("===========Notificación============");
+                                System.out.println("============Notificación=============");
                                 System.out.println("Se registro el paciente con id: " + id);
-                                System.out.println("===================================");
+                                System.out.println("=====================================");
                                 registro = true;
                                 cont++;
                             } else {
                                 System.out.println("================Notificación================");
                                 System.out.println("Fallo el registro del paciente con id: " + id);
-                                System.out.println("===========================================");
+                                System.out.println("============================================");
 
                             }
                         } else {
