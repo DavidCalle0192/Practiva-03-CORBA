@@ -41,6 +41,7 @@ public class GestionAsintomaticosImpl implements GestionAsintomaticosOperations 
             if(!pacientes.containsKey(objDTO.id)){
                 pacientes.put(objDTO.id, objDTO);
                 resultado.value = true;
+                System.out.println("Se registro un nuevo paciente con id"+objDTO.id);
             }else{
                 System.out.println("Id "+objDTO.id+" ya esta registrado");
             }
@@ -52,7 +53,7 @@ public class GestionAsintomaticosImpl implements GestionAsintomaticosOperations 
     @Override
     public boolean enviarIndicador(int id, float ToC) {
         boolean res = false;
-        System.out.println("Desde enviar indicadores...");;
+        System.out.println("Ejecutando enviar indicadores...");;
         asintomaticoDTO objPaciente = pacientes.get(id);
         if(objPaciente!=null){
             if(ToC<36.2 || ToC > 38.2){
@@ -60,7 +61,7 @@ public class GestionAsintomaticosImpl implements GestionAsintomaticosOperations 
                         +" que esta fuera del rango normal se procede a notificar");
                 objRefRemotaNotificaciones.notificarMensaje(new ClsMensajeNotificacionDTO(pacientes.get(id).tipo_id, id, ToC));
             }else{
-                System.out.println("El paciente"+objPaciente.nombres+" "+objPaciente.apellidos
+                System.out.println("El paciente "+objPaciente.nombres+" "+objPaciente.apellidos
                         +" con identificacion "+objPaciente.tipo_id+" "+id+" presenta una ToC de "+ToC
                         +" que esta dentro del rango normal");
             }
