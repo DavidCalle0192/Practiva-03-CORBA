@@ -14,7 +14,8 @@ public class ClienteDeObjetos {
     //*** Atributo estático ***
 
     static GestionAsintomaticos ref;
-    static int temp=0;
+    static float temp=0;
+    static boolean estable=true;
 
     public static void main(String args[]) {
         try {
@@ -80,9 +81,7 @@ public class ClienteDeObjetos {
                         break;
                         
                     case 2:
-                        
-                        System.out.println(" Digite la temperatura del paciente: ");
-                        temp = UtilidadesConsola.leerEntero();
+                         opcion2();
                         
                         break;
                 }
@@ -96,6 +95,16 @@ public class ClienteDeObjetos {
         }
     }
     
+    
+    public static boolean opcion2(){
+    
+        System.out.println(" Digite la temperatura del paciente: ");
+                        temp = UtilidadesConsola.leerEntero();
+                        if(temp<36.2 || temp>38.2){
+                            estable = false;
+                        }
+        return estable;
+    }
     public static int menu() {
         
         System.out.println(" :: MENU ::");
