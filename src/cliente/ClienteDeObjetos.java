@@ -14,6 +14,7 @@ public class ClienteDeObjetos {
     //*** Atributo estático ***
 
     static GestionAsintomaticos ref;
+    static int temp=0;
 
     public static void main(String args[]) {
         try {
@@ -80,6 +81,9 @@ public class ClienteDeObjetos {
                         
                     case 2:
                         
+                        System.out.println(" Digite la temperatura del paciente: ");
+                        temp = UtilidadesConsola.leerEntero();
+                        
                         break;
                 }
                 
@@ -96,7 +100,7 @@ public class ClienteDeObjetos {
         
         System.out.println(" :: MENU ::");
         System.out.println(" :1: Registrar Asintomatico");
-        System.out.println(" :2: Consultar Asintomatico");
+        System.out.println(" :2: Enviar indicador");
         System.out.println(" :3: Salir");
         int rta = UtilidadesConsola.leerEntero();
         
